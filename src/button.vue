@@ -12,7 +12,23 @@
 </template>
 <script>
    export default {
-    props: ["icon","iconposition"]//传参
+    // props: ["icon","iconposition"]//传参
+    props:{//props新写法
+        icon:{},
+        iconposition:{
+            type:String,//类型
+            default: 'left',//默认值
+            validator(value){//属性检查器 自定义验证函数
+                // console.log(value)
+                if(value !== 'left' && value !== 'right'){
+                    return false
+                }else{
+                    return true
+                }
+                // 1.return ['left', 'right'].indexOf(value) !== -1
+            }
+        }
+    }
    }
 </script>
 <style lang="scss">
