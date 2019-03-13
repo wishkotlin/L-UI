@@ -3,7 +3,7 @@
     <button class="g-button" :class="{[`icon-${iconposition}`] : true}">
         <!-- 传变量 -->
         <!-- <svg v-if="icon" class="icon"><use :xlink:href="`#i${icon}`"></use></svg> -->
-        <g-icon v-if="icon" :name="icon"></g-icon>
+        <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
         <!-- v-bind绑定 模板字符串 -->
         <div class="contnet">
         <slot></slot>
@@ -52,6 +52,7 @@
         }
         > .contnet{
             order: 2;
+            line-height: 1em;
         }
         &:hover{
             border-color: var(--border-color-hover);
@@ -70,6 +71,7 @@
             }
             > .contnet{
                 order: 1;
+                line-height: 1em;
             }
         }
     }
