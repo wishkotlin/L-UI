@@ -1,10 +1,11 @@
 <template>
 <!-- 单文件组件 -->
-    <button class="g-button" :class="{[`icon-${iconposition}`] : true}">
+    <button class="g-button" :class="{[`icon-${iconposition}`] : true}" 
+    @click="$emit('loading')">
         <!-- 传变量 -->
         <!-- <svg v-if="icon" class="icon"><use :xlink:href="`#i${icon}`"></use></svg> -->
-        <g-icon class="icon" v-if="icon" :name="icon"></g-icon>
-        <g-icon class="loading" name="loading"></g-icon>
+        <g-icon class="icon" v-if="icon && !loading" :name="icon"></g-icon>
+        <g-icon v-if="loading" class="loading icon" name="loading"></g-icon>
         <!-- v-bind绑定 模板字符串 -->
         <div class="contnet">
         <slot></slot>
@@ -17,6 +18,10 @@
     // props: ["icon","iconposition"]//传参
     props:{//props新写法
         icon:{},
+        loading:{
+            type:Boolean,
+            default:false
+        },
         iconposition:{
             type:String,//类型
             default: 'left',//默认值
@@ -30,6 +35,9 @@
                 // 1.return ['left', 'right'].indexOf(value) !== -1
             }
         }
+    },
+    methods:{
+
     }
    }
 </script>
