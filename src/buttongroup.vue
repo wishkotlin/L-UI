@@ -28,7 +28,10 @@ export default {
     //     border-left: none;
     // }
     // 解决只显示三个border的问题
-    margin-left: -1px;
+    &:not(:first-child){
+        margin-left: -1px;
+    }
+    
     &:first-child {
       border-top-left-radius: var(--border-radius);
       border-bottom-left-radius: var(--border-radius);
