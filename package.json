@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/liulinboyi/L-UI/issues"
   },
-  "homepage": "https://github.com/liulinboyi/L-UI#readme"
+  "homepage": "https://github.com/liulinboyi/L-UI#readme",
+  "dependencies": {
+    "vue": "^2.6.8"
+  }
 }
