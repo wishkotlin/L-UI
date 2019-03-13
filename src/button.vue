@@ -1,10 +1,18 @@
 <template>
 <!-- 单文件组件 -->
-    <button class="g-button">按钮</button>
+    <button class="g-button" :class="{[`icon-${iconposition}`] : true}">
+        <!-- 传变量 -->
+        <svg v-if="icon" class="icon"><use :xlink:href="`#i${icon}`"></use></svg>
+        <!-- v-bind绑定 模板字符串 -->
+        <div class="contnet">
+        <slot></slot>
+        </div>
+        <!--1. 插槽 -->
+    </button>
 </template>
 <script>
    export default {
-
+    props: ["icon","iconposition"]//传参
    }
 </script>
 <style lang="scss">
@@ -15,6 +23,19 @@
         border-radius: var(--border-radius);
         border: 1px solid var(--border-color);
         background: var(--button-bg);
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        // 解决行内元素对不齐的属性
+        > .icon{
+            order: 1;
+            margin-right: .1em;
+            margin-left: 0;
+        }
+        > .contnet{
+            order: 2;
+        }
         &:hover{
             border-color: var(--border-color-hover);
         }
@@ -23,6 +44,16 @@
         }
         &:focus{
             outline: none;
+        }
+        &.icon-right{
+            >.icon{
+                order: 2;
+                margin-left: .1em;
+                margin-right: 0;
+            }
+            > .contnet{
+                order: 1;
+            }
         }
     }
 
