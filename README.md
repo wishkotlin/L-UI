@@ -2,7 +2,7 @@
 
 L UI
 
-使用本框架爱前 请在 css 中启用 bordder_box
+使用本框架前 请在 css 中启用 bordder_box
 
 ```
 *{
