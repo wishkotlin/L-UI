@@ -14,6 +14,11 @@ new Vue({
         loading1: false,
         loading2: false,
         loading3: true
+    },
+    methods: {
+        inputChange(event){
+            console.log(event.target.value)
+        }
     }
     // render: h=>h(App)
 });
