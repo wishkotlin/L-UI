@@ -80,13 +80,20 @@ describe('Input', () => {
             //<g-input value="小" @modify="inputChange" error="出错了"></g-input>
             //触发change事件
             let event = new Event('change')
+            //为 event 手动添加 target
+            Object.defineProperty(event,'target',{
+                value: {
+                    value: 'hi'
+                },
+                enumerable: true
+            })
             //event 浏览器原生事件
             console.log(event)
             let inputElement = vm.$el.querySelector('input')
             console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
-            expect(callback).to.have.been.calledWith(event)
+            expect(callback).to.have.been.calledWith('hi')
             vm.$destroy()
         })
         it('input 事件', () => {
@@ -99,13 +106,19 @@ describe('Input', () => {
             //<g-input value="小" @modify="inputChange" error="出错了"></g-input>
             //触发change事件
             let event = new Event('input')
+            Object.defineProperty(event,'target',{
+                value: {
+                    value: 'hi'
+                },
+                enumerable: true
+            })
             //event 浏览器原生事件
             console.log(event)
             let inputElement = vm.$el.querySelector('input')
             console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
-            expect(callback).to.have.been.calledWith(event)
+            expect(callback).to.have.been.calledWith('hi')
             vm.$destroy()
         })
         it('focus 事件', () => {
@@ -118,13 +131,19 @@ describe('Input', () => {
             //<g-input value="小" @modify="inputChange" error="出错了"></g-input>
             //触发change事件
             let event = new Event('focus')
+            Object.defineProperty(event,'target',{
+                value: {
+                    value: 'hi'
+                },
+                enumerable: true
+            })
             //event 浏览器原生事件
             console.log(event)
             let inputElement = vm.$el.querySelector('input')
             console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
-            expect(callback).to.have.been.calledWith(event)
+            expect(callback).to.have.been.calledWith('hi')
             vm.$destroy()
         })
         it('blur 事件', () => {
@@ -137,13 +156,19 @@ describe('Input', () => {
             //<g-input value="小" @modify="inputChange" error="出错了"></g-input>
             //触发change事件
             let event = new Event('blur')
+            Object.defineProperty(event, 'target', {
+                value: {
+                    value: 'hi'
+                },
+                enumerable: true
+            })
             //event 浏览器原生事件
             console.log(event)
             let inputElement = vm.$el.querySelector('input')
             console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
-            expect(callback).to.have.been.calledWith(event)
+            expect(callback).to.have.been.calledWith('hi')
             vm.$destroy()
         })
     })

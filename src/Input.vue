@@ -1,10 +1,15 @@
 <template>
     <div class="wrapper" :class="{'error': error}">
+        <!-- @input="$emit('input',$event.target.value)"    调用事件名称必须为 input           -->
+        <!--   :value="value"
+        @input="$emit('input',$event.target.value)"
+          这两句使组件支持 v-model
+          -->
         <input
-                @change="$emit('change',$event)"
-                @input="$emit('input',$event)"
-                @focus="$emit('focus',$event)"
-                @blur="$emit('blur',$event)"
+                @change="$emit('change',$event.target.value)"
+                @input="$emit('input',$event.target.value)"
+                @focus="$emit('focus',$event.target.value)"
+                @blur="$emit('blur',$event.target.value)"
                 type="text" :value="value" :disabled="disabled" :readonly="readonly">
         <template v-if="error">
             <icon name="error" class="icon-error"></icon>

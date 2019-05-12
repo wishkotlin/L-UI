@@ -59,6 +59,10 @@
     <div class="box">
         <g-input value="小" @change="inputChange" error="出错了"></g-input>
     </div>
+    <div class="box">
+        <g-input v-model="msg"></g-input>
+        <p>{{msg}}</p>
+    </div>
 
     <div style="margin: 20px;" class="box">
         <g-button icon="setting" iconposition="left" :loading="loading1" @loading="loading1 = !loading1">按钮</g-button>
