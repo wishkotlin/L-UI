@@ -41,6 +41,16 @@
     .box {
         margin: 20px;
     }
+    /*.row{*/
+    /*    display: flex;*/
+    /*}*/
+
+    /*.col[data-col='2']{*/
+    /*    width: calc(100% * 2/24);*/
+    /*}*/
+    /*.col[data-col='22']{*/
+    /*    width: calc(100% * 22/24);*/
+    /*}*/
 </style>
 <style>
 
@@ -63,7 +73,43 @@
         <g-input v-model="msg"></g-input>
         <p>{{msg}}</p>
     </div>
+    <div class="box">
+        <g-row>
+            <g-col ></g-col>
+            <g-col ></g-col>
+        </g-row>
+        <g-row>
+            <g-col ></g-col>
+            <g-col ></g-col>
+            <g-col ></g-col>
+        </g-row>
+        <g-row>
+            <g-col ></g-col>
+            <g-col ></g-col>
+            <g-col ></g-col>
+            <g-col ></g-col>
+        </g-row>
+        <g-row>
+<!--            加上 :相当于 :span="js代码"-->
+            <g-col span="2"></g-col>
+            <g-col span="22"></g-col>
+        </g-row>
+    </div>
+<!--    <div class="row">-->
+<!--        <div class="col"></div>-->
+<!--        <div class="col"></div>-->
+<!--    </div>-->
 
+<!--    <div class="row">-->
+<!--        <div class="col"></div>-->
+<!--        <div class="col"></div>-->
+<!--        <div class="col"></div>-->
+<!--        <div class="col"></div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        <div class="col" data-col="2"></div>-->
+<!--        <div class="col" data-col="22"></div>-->
+<!--    </div>-->
     <div style="margin: 20px;" class="box">
         <g-button icon="setting" iconposition="left" :loading="loading1" @loading="loading1 = !loading1">按钮</g-button>
         <g-button icon="" :loading="loading2" @loading="loading2 = !loading2">按钮</g-button>

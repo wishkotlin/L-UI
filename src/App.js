@@ -3,11 +3,15 @@ import Button from "./button.vue";
 import Icon from "./icon.vue";
 import ButtonGroup from "./buttongroup.vue";
 import Input from "./Input.vue";
+import Row from "./row.vue"
+import Col from './col.vue'
 
 Vue.component("g-button", Button); //组件注册
 Vue.component("g-icon", Icon);
 Vue.component("g-buttongroup", ButtonGroup);
 Vue.component("g-input", Input)
+Vue.component('g-row', Row)
+Vue.component('g-col', Col)
 new Vue({
     el: "#app",
     data: {
@@ -17,7 +21,7 @@ new Vue({
         msg: '双向数据绑定'
     },
     methods: {
-        inputChange(event){
+        inputChange(event) {
             console.log(event.target.value)
         }
     }
