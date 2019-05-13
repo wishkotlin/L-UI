@@ -77,7 +77,9 @@
 
                 &:hover {border-color: $red;}
 
-                &:focus {box-shadow: inset 0 1px 3px $red;outline: none;}
+                &:focus {
+                    box-shadow: inset 0 1px 3px $red;outline: none;
+                }
             }
         }
 
@@ -85,7 +87,11 @@
 
             &:hover {border-color: $boder-color-hover;border-radius: $border-radius;}
 
-            &:focus {box-shadow: inset 0 1px 3px $box-shadow-color;outline: none; /*box-shadow: 0 0 0 4px rgb(77, 144, 254);*/
+            &:focus {
+                //box-shadow: inset 0 1px 3px $box-shadow-color;
+                box-shadow: inset 0 1px 2px rgba(27,31,35,.075), 0 0 0 0.2em rgba(3,102,214,.3);
+                border-color: #2188ff;
+                outline: none; /*box-shadow: 0 0 0 4px rgb(77, 144, 254);*/
             }
 
             &[disabled], &[readonly] {border-color: #d1d1d1;color: #d1d1d1;background-color: #fbfbfb;cursor: not-allowed;}

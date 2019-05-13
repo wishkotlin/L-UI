@@ -1,5 +1,5 @@
 <template>
-    <div class="row" :style="{margin: `0 -${gutter}px`}">
+    <div class="row" :style="rowstyle">
         <slot></slot>
     </div>
 </template>
@@ -10,6 +10,12 @@
         props: {
             gutter: {
                 type: [Number, String],
+            }
+        },
+        computed: {
+            rowstyle() {
+                let {gutter} = this
+                return {margin: `0 -${gutter}px`}
             }
         },
         /**
@@ -33,6 +39,7 @@
 
     .row {
         display: flex;
+        flex-wrap: wrap;
         //margin: 0 -10px;
         /*::v-deep .col {*/
         /*    padding: 0 10px;*/
