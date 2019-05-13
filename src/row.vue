@@ -15,7 +15,7 @@
         computed: {
             rowstyle() {
                 let {gutter} = this
-                return {margin: `0 -${gutter}px`}
+                return {margin: `0 -${gutter/2}px`}
             }
         },
         /**

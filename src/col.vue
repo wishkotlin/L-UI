@@ -62,7 +62,7 @@
         computed: {
             colstyle() {
                 return {
-                    padding: `0 ${this.gutter}px`
+                    padding: `0 ${this.gutter/2}px`
                 }
             },
             colclass() {
@@ -81,7 +81,7 @@
                     }
                     //col-ipad-offset-
                     if(obj.offset){
-                        array.push(`col-${str}-offset-${obj.offset}`)
+                        array.push(`col-${str}offset-${obj.offset}`)
                     }
                     return array
                 }
