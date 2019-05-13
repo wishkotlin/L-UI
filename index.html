@@ -54,9 +54,21 @@
     /*    width: calc(100% * 22/24);*/
     /*}*/
     .demo {
-        border: 1px gray solid;
+        /*border: 1px gray solid;*/
         min-height: 100px;
         text-align: center;
+    }
+    .sider{
+        background: #333;
+        width: 200px;
+    }
+    .header{
+        background: #999;
+        height: 100px;
+    }
+    .footer{
+        background: #ccc;
+        height: 50px;
     }
 </style>
 <style>
@@ -67,11 +79,11 @@
 <div id="app">
     <div class="box">
         <g-layout style="height: 100vh;">
-            <g-sider class="demo">Sider</g-sider>
+            <g-sider >Sider</g-sider>
             <g-layout>
-                <g-header class="demo">Header</g-header>
-                <g-content class="demo">Content</g-content>
-                <g-footer class="demo">Footer</g-footer>
+                <g-header >Header</g-header>
+                <g-content >Content</g-content>
+                <g-footer >Footer</g-footer>
             </g-layout>
         </g-layout>
     </div>
