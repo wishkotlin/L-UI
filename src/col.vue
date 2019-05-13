@@ -66,18 +66,38 @@
                 }
             },
             colclass() {
+                //解构赋值
                 let {span, offset, ipad, narrow, pc, wide} = this
                 // if(phone){
                 //     phoneclass = [`col-phone-${phone.span}`]
                 // }
+                let classes = (obj=[],str='') => {
+                    // if(!obj){
+                    //     return []
+                    // }
+                    let array = []
+                    if(obj.span){
+                        array.push(`col-${str}${obj.span}`)
+                    }
+                    //col-ipad-offset-
+                    if(obj.offset){
+                        array.push(`col-${str}-offset-${obj.offset}`)
+                    }
+                    return array
+                }
                 return [
-                    span && `col-${span}`,
-                    offset && `col-offset-${offset}`,
-                    // phone && `col-phone-${phone.span}`,
-                    ipad && `col-ipad-${ipad.span}`,
-                    narrow && `col-narrow-${narrow.span}`,
-                    pc && `col-pc-${pc.span}`,
-                    wide && `col-wide-${wide.span}`,
+                    ...classes({span,offset}),
+                    ...classes(ipad,'ipad-'),
+                    ...classes(narrow,'narrow-'),
+                    ...classes(pc,'pc-'),
+                    ...classes(wide,'wide-'),
+                    // span && `col-${span}`,
+                    // offset && `col-offset-${offset}`,
+                    // // phone && `col-phone-${phone.span}`,
+                    // ipad && `col-ipad-${ipad.span}`,
+                    // narrow && `col-narrow-${narrow.span}`,
+                    // pc && `col-pc-${pc.span}`,
+                    // wide && `col-wide-${wide.span}`,
                 ]
             }
             // gutter: function(){
