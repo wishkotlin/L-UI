@@ -37,12 +37,25 @@
 
 <style lang="scss" scoped>
 
+    *, *::before, *::after {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
     .row {
         display: flex;
         flex-wrap: wrap;
         //margin: 0 -10px;
-        /*::v-deep .col {*/
-        /*    padding: 0 10px;*/
-        /*}*/
+        //::v-deep .col {*/
+        //    padding: 0 10px;*/
+        //}
+        &::before{
+            display: table;
+            content: '';
+        }
+        &::after{
+            clear: both;
+            display: table;
+            content: '';
+        }
     }
 </style>

@@ -31,7 +31,7 @@
 
     /*用户变量*/
     #app {
-        margin: 20px;
+        /*margin: 20px;*/
     }
 
     body {
@@ -39,7 +39,8 @@
     }
 
     .box {
-        margin: 20px;
+        /*margin: 20px;*/
+        overflow-x: hidden;
     }
 
     /*.row{*/
@@ -52,6 +53,11 @@
     /*.col[data-col='22']{*/
     /*    width: calc(100% * 22/24);*/
     /*}*/
+    .demo {
+        border: 1px gray solid;
+        min-height: 100px;
+        text-align: center;
+    }
 </style>
 <style>
 
@@ -60,80 +66,94 @@
 <body>
 <div id="app">
     <div class="box">
-        <g-input value="小明" :disabled="true"></g-input>
-        <g-input value="小明" disabled></g-input>
-        <g-input value="小明" :readonly="true"></g-input>
+        <g-layout style="height: 100vh;">
+            <g-sider class="demo">Sider</g-sider>
+            <g-layout>
+                <g-header class="demo">Header</g-header>
+                <g-content class="demo">Content</g-content>
+                <g-footer class="demo">Footer</g-footer>
+            </g-layout>
+        </g-layout>
     </div>
-    <div class="box">
-        <g-input value="小红"></g-input>
-    </div>
-    <div class="box">
-        <g-input value="小" @change="inputChange" error="出错了"></g-input>
-    </div>
-    <div class="box">
-        <g-input v-model="msg"></g-input>
-        <p>{{msg}}</p>
-    </div>
-    <div style="margin: 20px;" class="box">
-        <g-button icon="setting" iconposition="left" :loading="loading1" @loading="loading1 = !loading1">按钮</g-button>
-        <g-button icon="" :loading="loading2" @loading="loading2 = !loading2">按钮</g-button>
-        <g-button icon="setting" iconposition="right" :loading="loading3" @loading="loading3 = !loading3">按钮</g-button>
-        <g-buttongroup>
-            <g-button icon="left">上一页</g-button>
-            <g-button>更多</g-button>
-            <g-button icon="right" iconposition="right">下一页</g-button>
-        </g-buttongroup>
-    </div>
-    <div class="box">
-        <g-row>
-            <g-col span="12"></g-col>
-            <g-col span="12"></g-col>
-        </g-row>
-        <g-row>
-            <g-col span="8"></g-col>
-            <g-col span="8"></g-col>
-            <g-col span="8"></g-col>
-        </g-row>
-        <g-row>
-            <g-col span="6"></g-col>
-            <g-col span="6"></g-col>
-            <g-col span="6"></g-col>
-            <g-col span="6"></g-col>
-        </g-row>
-        <g-row>
-            <!--            加上 :相当于 :span="js代码"-->
-            <g-col span="2"></g-col>
-            <g-col span="20" offset="2"></g-col>
-        </g-row>
-        <g-row>
-            <g-col span="5"></g-col>
-            <g-col span="5" offset="4"></g-col>
-            <g-col span="5" offset="5"></g-col>
-        </g-row>
-        <g-row gutter="10">
-            <g-col></g-col>
-            <g-col></g-col>
-        </g-row>
-        <g-row gutter="20">
-            <g-col span="8"></g-col>
-            <g-col span="8"></g-col>
-            <g-col span="8"></g-col>
-        </g-row>
-        <div>响应式布局演示</div>
-        <g-row>
-            <g-col span="10" :ipad="{span: 9}" :narrow="{span: 8}" :pc="{span: 6}" :wide="{span: 20}"></g-col>
-            <g-col span="4" :ipad="{span: 6}"  :narrow="{span: 8}" :pc="{span: 12}" :wide="{span: 2}"></g-col>
-            <g-col span="10" :ipad="{span: 9}"  :narrow="{span: 8}" :pc="{span: 6}" :wide="{span: 2}"></g-col>
-        </g-row>
-        <g-row>
-            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}" ></g-col>
-            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}" ></g-col>
-            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}" ></g-col>
-            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}" ></g-col>
-            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}" ></g-col>
-            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}" ></g-col>
-        </g-row>
-    </div>
+
+
+    <!--    <div class="box">-->
+    <!--        <g-input value="小明" :disabled="true"></g-input>-->
+    <!--        <g-input value="小明" disabled></g-input>-->
+    <!--        <g-input value="小明" :readonly="true"></g-input>-->
+    <!--    </div>-->
+    <!--    <div class="box">-->
+    <!--        <g-input value="小红"></g-input>-->
+    <!--    </div>-->
+    <!--    <div class="box">-->
+    <!--        <g-input value="小" @change="inputChange" error="出错了"></g-input>-->
+    <!--    </div>-->
+    <!--    <div class="box">-->
+    <!--        <g-input v-model="msg"></g-input>-->
+    <!--        <p>{{msg}}</p>-->
+    <!--    </div>-->
+    <!--    <div style="margin: 20px;" class="box">-->
+    <!--        <g-button icon="setting" iconposition="left" :loading="loading1" @loading="loading1 = !loading1">按钮</g-button>-->
+    <!--        <g-button icon="" :loading="loading2" @loading="loading2 = !loading2">按钮</g-button>-->
+    <!--        <g-button icon="setting" iconposition="right" :loading="loading3" @loading="loading3 = !loading3">按钮</g-button>-->
+    <!--        <g-buttongroup>-->
+    <!--            <g-button icon="left">上一页</g-button>-->
+    <!--            <g-button>更多</g-button>-->
+    <!--            <g-button icon="right" iconposition="right">下一页</g-button>-->
+    <!--        </g-buttongroup>-->
+    <!--    </div>-->
+    <!--    <div class="box">-->
+    <!--        <g-row>-->
+    <!--            <g-col span="12"></g-col>-->
+    <!--            <g-col span="12"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row>-->
+    <!--            <g-col span="8"></g-col>-->
+    <!--            <g-col span="8"></g-col>-->
+    <!--            <g-col span="8"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row>-->
+    <!--            <g-col span="6"></g-col>-->
+    <!--            <g-col span="6"></g-col>-->
+    <!--            <g-col span="6"></g-col>-->
+    <!--            <g-col span="6"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row>-->
+    <!--            &lt;!&ndash;            加上 :相当于 :span="js代码"&ndash;&gt;-->
+    <!--            <g-col span="2"></g-col>-->
+    <!--            <g-col span="20" offset="2"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row>-->
+    <!--            <g-col span="5"></g-col>-->
+    <!--            <g-col span="5" offset="4"></g-col>-->
+    <!--            <g-col span="5" offset="5"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row gutter="10">-->
+    <!--            <g-col span="12"></g-col>-->
+    <!--            <g-col span="12"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row gutter="20">-->
+    <!--            <g-col span="8"></g-col>-->
+    <!--            <g-col span="8"></g-col>-->
+    <!--            <g-col span="8"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <div>响应式布局演示</div>-->
+    <!--        <g-row>-->
+    <!--            <g-col span="10" :ipad="{span: 9}" :narrow="{span: 8}" :pc="{span: 6}" :wide="{span: 20}"></g-col>-->
+    <!--            <g-col span="4" :ipad="{span: 6}" :narrow="{span: 8}" :pc="{span: 12}" :wide="{span: 2}"></g-col>-->
+    <!--            <g-col span="10" :ipad="{span: 9}" :narrow="{span: 8}" :pc="{span: 6}" :wide="{span: 2}"></g-col>-->
+    <!--        </g-row>-->
+    <!--        <g-row>-->
+    <!--            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}"></g-col>-->
+    <!--            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}"></g-col>-->
+    <!--            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}"></g-col>-->
+    <!--            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}"></g-col>-->
+    <!--            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}"></g-col>-->
+    <!--            <g-col span="24" :ipad="{span: 12}" :narrow="{span: 8}"></g-col>-->
+    <!--        </g-row>-->
+    <!--    </div>-->
+
+
     <!--    <div class="row">-->
     <!--        <div class="col"></div>-->
     <!--        <div class="col"></div>-->
