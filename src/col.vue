@@ -34,11 +34,11 @@
             offset: {
                 type: [Number, String],
             },
-            phone: {
-                type: Object,
-                validator,
-
-            },
+            // phone: {
+            //     type: Object,
+            //     validator,
+            //
+            // },
             ipad: {
                 type: Object,
                 validator
@@ -66,14 +66,14 @@
                 }
             },
             colclass() {
-                let {span, offset, phone,ipad,narrow,pc,wide} = this
+                let {span, offset,ipad,narrow,pc,wide} = this
                 // if(phone){
                 //     phoneclass = [`col-phone-${phone.span}`]
                 // }
                 return [
                     span && `col-${span}`,
                     offset && `col-offset-${offset}`,
-                    phone && `col-phone-${phone.span}`,
+                    // phone && `col-phone-${phone.span}`,
                     ipad && `col-ipad-${ipad.span}`,
                     narrow && `col-narrow-${narrow.span}`,
                     pc && `col-pc-${pc.span}`,
@@ -127,20 +127,8 @@
         }
 
         //手机
-        @media (max-width: 576px) {
-            $class-prefix: col-phone-;
-            @for $n from 1 through 24 {
-                &.#{$class-prefix}#{$n} {
-                    width: calc(100% * #{$n} / 24);
-                }
-            }
-            $class-prefix-offset: col-phone-offset-;
-            @for $n from 1 through 24 {
-                &.#{$class-prefix-offset}#{$n} {
-                    margin-left: calc(100% * #{$n} / 24);
-                }
-            }
-        }
+
+
         //ipad
         @media (min-width: 577px) and (max-width: 768px) {
             $class-prefix: col-ipad-;

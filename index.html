@@ -119,10 +119,11 @@
             <g-col span="8"></g-col>
             <g-col span="8"></g-col>
         </g-row>
+        <div>响应式布局演示</div>
         <g-row>
-            <g-col span="10"></g-col>
-            <g-col span="4" :phone="{span: 8,offset: 0}"></g-col>
-            <g-col span="10"></g-col>
+            <g-col span="10" :ipad="{span: 9}" :narrow="{span: 8}" :pc="{span: 6}" :wide="{span: 20}"></g-col>
+            <g-col span="4" :ipad="{span: 6}"  :narrow="{span: 8}" :pc="{span: 12}" :wide="{span: 2}"></g-col>
+            <g-col span="10" :ipad="{span: 9}"  :narrow="{span: 8}" :pc="{span: 6}" :wide="{span: 2}"></g-col>
         </g-row>
     </div>
     <!--    <div class="row">-->
