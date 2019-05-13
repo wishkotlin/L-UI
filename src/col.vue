@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    let validator =  (value) => {
+    let validator = (value) => {
         let keys = Object.keys(value)
         let valid = true
         keys.forEach(key => {
@@ -66,7 +66,7 @@
                 }
             },
             colclass() {
-                let {span, offset,ipad,narrow,pc,wide} = this
+                let {span, offset, ipad, narrow, pc, wide} = this
                 // if(phone){
                 //     phoneclass = [`col-phone-${phone.span}`]
                 // }
@@ -106,6 +106,7 @@
         /*outline: 1px red solid;*/
         /*border: 1px solid red;*/
         //间隙
+        //手机
         /*padding: 0 10px;*/
         $class-prefix: col-;
         @for $n from 1 through 24 {
@@ -126,11 +127,9 @@
             height: 100px;
         }
 
-        //手机
-
 
         //ipad
-        @media (min-width: 577px) and (max-width: 768px) {
+        @media (min-width: 577px) {
             $class-prefix: col-ipad-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n} {
@@ -145,7 +144,7 @@
             }
         }
         //窄屏幕
-        @media (min-width: 769px) and (max-width: 992px) {
+        @media (min-width: 769px) {
             $class-prefix: col-narrow-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n} {
@@ -160,7 +159,7 @@
             }
         }
         //pc
-        @media (min-width: 993px) and (max-width: 1200px) {
+        @media (min-width: 993px) {
             $class-prefix: col-pc-;
             @for $n from 1 through 24 {
                 &.#{$class-prefix}#{$n} {
