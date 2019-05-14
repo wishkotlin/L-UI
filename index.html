@@ -58,15 +58,18 @@
         min-height: 100px;
         text-align: center;
     }
-    .sider{
+
+    .sider {
         background: #333;
         width: 200px;
     }
-    .header{
+
+    .header {
         background: #999;
         height: 100px;
     }
-    .footer{
+
+    .footer {
         background: #ccc;
         height: 50px;
     }
@@ -77,16 +80,20 @@
 
 <body>
 <div id="app">
-    <div class="box">
-        <g-layout style="height: 100vh;">
-            <g-sider >Sider</g-sider>
-            <g-layout>
-                <g-header >Header</g-header>
-                <g-content >Content</g-content>
-                <g-footer >Footer</g-footer>
-            </g-layout>
-        </g-layout>
-    </div>
+<div class="box">
+    <button @click="showToast">Toast</button>
+</div>
+    <!--    默认布局demo-->
+    <!--    <div class="box">-->
+    <!--        <g-layout style="height: 100vh;">-->
+    <!--            <g-sider>Sider</g-sider>-->
+    <!--            <g-layout>-->
+    <!--                <g-header>Header</g-header>-->
+    <!--                <g-content>Content</g-content>-->
+    <!--                <g-footer>Footer</g-footer>-->
+    <!--            </g-layout>-->
+    <!--        </g-layout>-->
+    <!--    </div>-->
 
 
     <!--    <div class="box">-->
