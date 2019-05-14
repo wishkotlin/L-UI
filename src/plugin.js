@@ -29,8 +29,11 @@ export default {
                 toast.$mount()
                 //自定义事件 beforeClose
                 toast.$on('beforeClose', () => {
-                    // console.log('CreateToast',currentToast);
+                    console.log('CreateToast',currentToast);
                     currentToast = null//设置上一个currentToast 为null
+                })
+                toast.$on('close',() => {
+                    console.log(1111)
                 })
                 document.body.appendChild(toast.$el)
                 //将 toast实例赋值给 变量 currentToast

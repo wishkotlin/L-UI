@@ -51,9 +51,9 @@ new Vue({
                     }
                 },
                 autoClose: false,
-                autoCloseDelay: 2,
-                enableHtml: true,
-                position: 'top'
+                // autoCloseDelay: 2,
+                // enableHtml: true,
+                // position: 'top'
             })
         },
         showToast2() {
@@ -84,7 +84,7 @@ new Vue({
                         console.log('用户点击关闭')
                     }
                 },
-                autoClose: false,
+                autoClose: true,
                 autoCloseDelay: 2,
                 enableHtml: true,
                 position: 'bottom'

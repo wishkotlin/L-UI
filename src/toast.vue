@@ -1,16 +1,15 @@
 <template>
     <div class="outer" :class="toastClseees">
         <div class="toast" ref="toast">
-            <div class="msg">
+            <div class="msg" :class="{'NoClose': JSON.stringify(closeButton) === '{}'}">
                 <div v-if="enableHtml" v-html="$slots.default[0]"></div>
                 <slot v-else></slot>
                 <!--            <slot></slot>-->
 
             </div>
-            <div class="line" ref="line"></div>
-            <span class="close" v-if="closeButton" @click="onclickClose">
-            {{closeButton.text}}
-        </span>
+            <div class="line" ref="line" v-show="JSON.stringify(closeButton) !== '{}'"></div>
+            <span class="close" v-show="JSON.stringify(closeButton) !== '{}'"
+                  @click="onclickClose">{{closeButton.text}}</span>
         </div>
     </div>
 
@@ -33,11 +32,11 @@
                 type: Object,
                 default: () => {
                     return {
-                        text: '关闭',
-                        callback: undefined
-                        //     (toast) => {
-                        //     toast.close()
-                        // }
+                        // text: '关闭',
+                        // callback: undefined
+                        // //     (toast) => {
+                        // //     toast.close()
+                        // // }
                     }
                 }
             },
@@ -61,6 +60,7 @@
             if (this.autoClose) {
                 setTimeout(() => {
                     this.close()
+                    console.log(this.autoCloseDelay);
                 }, this.autoCloseDelay * 1000)
             }
             this.$nextTick(() => {
@@ -73,6 +73,7 @@
                 //元素 移除
                 console.log('close')
                 this.$el.remove()
+                this.$emit('close')
                 this.$emit('beforeClose')
                 //把一些事件取消掉
                 this.$destroy()
@@ -179,6 +180,12 @@
 
             .msg {
                 padding-right: 16px;
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+
+            .NoClose {
+                padding-right: unset;
                 padding-top: 8px;
                 padding-bottom: 8px;
             }
