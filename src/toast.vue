@@ -1,16 +1,19 @@
 <template>
-    <div class="toast" ref="toast" :class="toastClseees">
-        <div class="msg">
-            <div v-if="enableHtml" v-html="$slots.default[0]"></div>
-            <slot v-else></slot>
-            <!--            <slot></slot>-->
+    <div class="outer" :class="toastClseees">
+        <div class="toast" ref="toast">
+            <div class="msg">
+                <div v-if="enableHtml" v-html="$slots.default[0]"></div>
+                <slot v-else></slot>
+                <!--            <slot></slot>-->
 
-        </div>
-        <div class="line" ref="line"></div>
-        <span class="close" v-if="closeButton" @click="onclickClose">
+            </div>
+            <div class="line" ref="line"></div>
+            <span class="close" v-if="closeButton" @click="onclickClose">
             {{closeButton.text}}
         </span>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -96,65 +99,98 @@
     $font-size: 14px;
     $toast-min-height: 40px;
     $toast-bg: rgba(0, 0, 0, 0.75);
-    @keyframes fade-in {
+    @keyframes slide-up {
         0% {opacity: 0;transform: translateY(100%)}
         100% {opacity: 1;transform: translateY(0)}
     }
 
-    .toast {
-        animation: fade-in 1s;
-        /*border: 1px solid red;*/
+    @keyframes slide-down {
+        0% {opacity: 0;transform: translateY(-100%)}
+        100% {opacity: 1;transform: translateY(0)}
+    }
+
+    @keyframes slide-middle {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
+    }
+
+    .outer {
         position: fixed;
         left: 50%;
-        font-size: $font-size;
-        //line-height: $toast-height;
-        min-height: $toast-min-height;
-        display: flex;
-        align-items: center;
-        background: $toast-bg;
-        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);
-        border-radius: 4px;
-        color: #fff;
-        //4的倍数 或者 8 的倍数
-        padding: 0 16px;
-
-        .close {
-            padding-left: 16px;
-            /*border-left: 1px #fff solid;*/
-            text-align: center;
-            cursor: pointer;
-            //大小不缩
-            flex-shrink: 0;
-        }
-
-        .msg {
-            padding-right: 16px;
-            padding-top: 8px;
-            padding-bottom: 8px;
-        }
-
-        .line {
-            border-left: 1px #fff solid;
-            height: 100%;
-        }
+        transform: translateX(-50%);
+        $animation-time: 300ms;
 
         &.toast-top {
             top: 0;
             transform: translateX(-50%);
+
+            .toast {
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                animation: slide-down $animation-time;
+            }
         }
 
         &.toast-bottom {
             top: unset;
             bottom: 0;
             transform: translateX(-50%);
+
+            .toast {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                animation: slide-up $animation-time;
+            }
         }
 
         &.toast-middle {
             top: 50%;
             transform: translate(-50%, -50%);
+
+            .toast {
+                animation: slide-middle $animation-time;
+            }
         }
 
+        .toast {
+            /*animation: fade-in 1s;*/
+            /*border: 1px solid red;*/
 
+            font-size: $font-size;
+            //line-height: $toast-height;
+            min-height: $toast-min-height;
+            display: flex;
+            align-items: center;
+            background: $toast-bg;
+            box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.50);
+            border-radius: 4px;
+            color: #fff;
+            //4的倍数 或者 8 的倍数
+            padding: 0 16px;
+
+            .close {
+                padding-left: 16px;
+                /*border-left: 1px #fff solid;*/
+                text-align: center;
+                cursor: pointer;
+                //大小不缩
+                flex-shrink: 0;
+            }
+
+            .msg {
+                padding-right: 16px;
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+
+            .line {
+                border-left: 1px #fff solid;
+                height: 100%;
+            }
+
+
+        }
     }
+
 
 </style>
