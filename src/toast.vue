@@ -51,7 +51,7 @@
             }
         },
         created() {
-            console.log(this.closeButton);
+            // console.log(this.closeButton);
         },
         mounted() {
             //自动消失
@@ -61,14 +61,16 @@
                 }, this.autoCloseDelay * 1000)
             }
             this.$nextTick(() => {
-                console.log(this.$refs.toast.getBoundingClientRect().height);
+                // console.log(this.$refs.toast.getBoundingClientRect().height);
                 this.$refs.line.style.height = this.$refs.toast.getBoundingClientRect().height + 'px'
             })
         },
         methods: {
             close() {
                 //元素 移除
+                console.log('close')
                 this.$el.remove()
+                this.$emit('beforeClose')
                 //把一些事件取消掉
                 this.$destroy()
             },
