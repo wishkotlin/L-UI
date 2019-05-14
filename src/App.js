@@ -32,14 +32,28 @@ new Vue({
         loading1: false,
         loading2: false,
         loading3: true,
-        msg: '双向数据绑定'
+        msg: '双向数据绑定',
+        toast: '等点击Toast'
     },
     methods: {
         inputChange(event) {
             console.log(event.target.value)
         },
-        showToast(){
-            this.$toast('我是Toast')
+        showToast() {
+            this.$toast('我是Toast', {
+                closeButton: {
+                    text: '关闭呀',
+                    callback:(toast) => {
+                        console.log('Toast组件传过来的this',toast);
+                        console.log('callback this',this)
+                        this.toast = '已经点击Toast'
+                        console.log('用户点击关闭')
+                    }
+                },
+                autoClose: false,
+                autoCloseDelay: 2,
+                enableHtml: true,
+            })
         }
     },
     mounted() {
