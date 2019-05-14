@@ -53,6 +53,7 @@ new Vue({
                 autoClose: false,
                 autoCloseDelay: 2,
                 enableHtml: true,
+                position: 'bottom'
             })
         }
     },
