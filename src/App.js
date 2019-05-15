@@ -41,19 +41,19 @@ new Vue({
         },
         showToast1() {
             this.$toast('我是Toast', {
-                closeButton: {
-                    text: '关闭呀',
-                    callback:(toast) => {
-                        console.log('Toast组件传过来的this',toast);
-                        console.log('callback this',this)
-                        this.toast = '已经点击Toast'
-                        console.log('用户点击关闭')
-                    }
-                },
+                // closeButton: {
+                //     text: '关闭呀',
+                //     callback:(toast) => {
+                //         console.log('Toast组件传过来的this',toast);
+                //         console.log('callback this',this)
+                //         this.toast = '已经点击Toast'
+                //         console.log('用户点击关闭')
+                //     }
+                // },
                 autoClose: false,
                 // autoCloseDelay: 2,
                 // enableHtml: true,
-                // position: 'top'
+                position: 'top'
             })
         },
         showToast2() {
