@@ -13,6 +13,12 @@ import Header from './header'
 
 import plugin from './plugin'
 
+import Tabs from './tabs'
+import TabsHead from './tabs-head'
+import TabsItem from './tabs-item'
+import TabsBody from './tabs-body'
+import TabsPen from './tabs-pen'
+
 Vue.component("g-button", Button); //组件注册
 Vue.component("g-icon", Icon);
 Vue.component("g-buttongroup", ButtonGroup);
@@ -25,6 +31,13 @@ Vue.component('g-footer', Footer)
 Vue.component('g-sider', Sider)
 Vue.component('g-header', Header)
 Vue.use(plugin)
+Vue.component('g-tabs',Tabs)
+Vue.component('g-tabs-head',TabsHead)
+Vue.component('g-tabs-item',TabsItem)
+Vue.component('g-tabs-body',TabsBody)
+Vue.component('g-tabs-pen',TabsPen)
+
+
 
 new Vue({
     el: "#app",
@@ -33,7 +46,8 @@ new Vue({
         loading2: false,
         loading3: true,
         msg: '双向数据绑定',
-        toast: '等点击Toast'
+        toast: '等点击Toast',
+        selectedTab: 'sports'
     },
     methods: {
         inputChange(event) {
