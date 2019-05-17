@@ -30,8 +30,8 @@
                 }
             })
         },
-        computed:{
-            classes(){
+        computed: {
+            classes() {
                 return {
                     active: this.active
                 }
@@ -41,9 +41,11 @@
 </script>
 
 <style lang="scss" scoped>
-.tabs-pane{
-    &.active {
-        background: red;
+    .tabs-pane {
+        padding: 1em;
+
+        &.active {
+            /*background: red;*/
+        }
     }
-}
 </style>
