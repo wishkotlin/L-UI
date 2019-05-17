@@ -47,7 +47,7 @@
                     vm.$children.forEach((child) => {
                         // console.log(child.$options.name);
                         if (child.$options.name === 'tabs-item' && child.name === this.selected) {
-                            console.log(child.$el);
+                            // console.log(child.$el);
                             this.EventBus.$emit('update:selected', this.selected,child)
                         }
                     })

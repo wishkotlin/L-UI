@@ -26,10 +26,10 @@
         created() {
             this.EventBus.$on('update:selected', (name) => {
                 if (name === this.name) {
-                    console.log(`我是item ${this.name},我${name}被选中了`)
+                    // console.log(`我是item ${this.name},我${name}被选中了`)
                     this.active = true
                 } else {
-                    console.log(`我是item ${this.name},我${name}没被选中`)
+                    // console.log(`我是item ${this.name},我${name}没被选中`)
                     this.active = false
                 }
             })
