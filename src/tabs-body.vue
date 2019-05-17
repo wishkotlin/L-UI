@@ -15,6 +15,10 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
+    .tabs-body{
+        display: flex;
+        flex-direction: row;
+    }
 </style>

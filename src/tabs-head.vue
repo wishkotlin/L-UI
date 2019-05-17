@@ -25,7 +25,7 @@
                     //新增一个函数 放到 任务队列里面
                 } )
                 const {width, height, top, left} = vm.$el.getBoundingClientRect()
-                console.log(width, height, top, left)
+                // console.log(width, height, top, left)
                 this.$refs.line.style.width = `${width}px`
                 // this.$refs.line.style.left = `${left}px`
                 this.$refs.line.style.transform = `translate3d(${left}px, 0px, 0px)`

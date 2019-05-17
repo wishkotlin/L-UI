@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="xxx" :class="classes">
+    <div class="tabs-item" @click="ChangeTab" :class="{...classes,...disable}">
         <slot></slot>
     </div>
 </template>
@@ -35,14 +35,22 @@
             })
         },
         methods: {
-            xxx() {
-                this.EventBus.$emit('update:selected', this.name,this)
+            ChangeTab() {
+                if(this.disabled){
+                    return
+                }
+                this.EventBus.$emit('update:selected', this.name, this)
             }
         },
         computed: {
             classes() {
                 return {
                     active: this.active
+                }
+            },
+            disable(){
+                return {
+                    disabled: this.disabled
                 }
             }
         }
@@ -58,11 +66,16 @@
         align-items: center;
         cursor: pointer;
         height: 100%;
-        color: rgba(0,0,0,0.65);
+        color: rgba(0, 0, 0, 0.65);
+
         &.active {
             /*background: red;*/
             color: $color;
             font-weight: bold;
+        }
+        &.disabled{
+            color: #999999;
+            cursor: not-allowed;
         }
     }
 </style>
