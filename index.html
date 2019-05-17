@@ -82,7 +82,7 @@
 <div id="app">
     <div class="box">
         <!--        {{selectedTab}}-->
-        <!--        <g-tabs :selected="selectedTab" @update.selected="selectedTab = $event" direction="Horizontal">-->
+        <!--        <g-tabs :selected="selectedTab" @update:selected="select($event)" direction="Horizontal">-->
         <g-tabs :selected.sync="selectedTab" direction="Horizontal">
             <g-tabs-head>
                 <template slot="actions">

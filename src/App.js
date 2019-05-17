@@ -102,7 +102,7 @@ new Vue({
                 enableHtml: true,
                 position: 'bottom'
             })
-        }
+        },
     },
     mounted() {
         this.$nextTick(() => {

@@ -40,13 +40,25 @@
 
         },
         mounted() {
-            this.EventBus.$emit('update:selected',this.selected)
+            console.log(this.$children);
+            this.$children.forEach((vm) => {
+                // console.log(vm.$options.name);
+                if (vm.$options.name === 'tabs-head') {
+                    vm.$children.forEach((child) => {
+                        // console.log(child.$options.name);
+                        if (child.$options.name === 'tabs-item' && child.name === this.selected) {
+                            console.log(child.$el);
+                            this.EventBus.$emit('update:selected', this.selected,child)
+                        }
+                    })
+                }
+            })
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .tabs{
+    .tabs {
         /*display: flex;*/
         /*justify-content: center;*/
         /*align-items: center;*/
