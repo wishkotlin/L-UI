@@ -5,6 +5,8 @@
 </template>
 
 <script>
+    import Vue from 'vue'
+
     export default {
         name: "tabs",
         props: {
@@ -12,20 +14,41 @@
                 type: String,
                 required: true
             },
-            direction:{
-                type:String,
+            direction: {
+                type: String,
                 default: 'Horizontal',
-                validator(value){
-                    return ['Horizontal','Vertical'].indexOf(value) >= 0
+                validator(value) {
+                    return ['Horizontal', 'Vertical'].indexOf(value) >= 0
                 }
             }
         },
         created() {
-            // this.$emit('update:selected','参数')
+            this.EventBus.$on('update:selected', (name) => {
+            })
+        },
+        provide() {
+            return {
+                EventBus: this.EventBus
+            }
+        },
+        data() {
+            return {
+                EventBus: new Vue()
+            }
+        },
+        updated() {
+
+        },
+        mounted() {
+            this.EventBus.$emit('update:selected',this.selected)
         }
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .tabs{
+        /*display: flex;*/
+        /*justify-content: center;*/
+        /*align-items: center;*/
+    }
 </style>

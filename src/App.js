@@ -17,7 +17,7 @@ import Tabs from './tabs'
 import TabsHead from './tabs-head'
 import TabsItem from './tabs-item'
 import TabsBody from './tabs-body'
-import TabsPen from './tabs-pen'
+import TabsPane from './tabs-pane'
 
 Vue.component("g-button", Button); //组件注册
 Vue.component("g-icon", Icon);
@@ -31,12 +31,11 @@ Vue.component('g-footer', Footer)
 Vue.component('g-sider', Sider)
 Vue.component('g-header', Header)
 Vue.use(plugin)
-Vue.component('g-tabs',Tabs)
-Vue.component('g-tabs-head',TabsHead)
-Vue.component('g-tabs-item',TabsItem)
-Vue.component('g-tabs-body',TabsBody)
-Vue.component('g-tabs-pen',TabsPen)
-
+Vue.component('g-tabs', Tabs)
+Vue.component('g-tabs-head', TabsHead)
+Vue.component('g-tabs-item', TabsItem)
+Vue.component('g-tabs-body', TabsBody)
+Vue.component('g-tabs-pane', TabsPane)
 
 
 new Vue({
@@ -74,9 +73,9 @@ new Vue({
             this.$toast('我是Toast', {
                 closeButton: {
                     text: '关闭呀',
-                    callback:(toast) => {
-                        console.log('Toast组件传过来的this',toast);
-                        console.log('callback this',this)
+                    callback: (toast) => {
+                        console.log('Toast组件传过来的this', toast);
+                        console.log('callback this', this)
                         this.toast = '已经点击Toast'
                         console.log('用户点击关闭')
                     }
@@ -91,9 +90,9 @@ new Vue({
             this.$toast('我是Toast', {
                 closeButton: {
                     text: '关闭呀',
-                    callback:(toast) => {
-                        console.log('Toast组件传过来的this',toast);
-                        console.log('callback this',this)
+                    callback: (toast) => {
+                        console.log('Toast组件传过来的this', toast);
+                        console.log('callback this', this)
                         this.toast = '已经点击Toast'
                         console.log('用户点击关闭')
                     }
@@ -106,6 +105,11 @@ new Vue({
         }
     },
     mounted() {
+        this.$nextTick(() => {
+            // console.log('selectedTab', this.selectedTab);
+        })
+    },
+    update(){
 
     }
     // render: h=>h(App)
