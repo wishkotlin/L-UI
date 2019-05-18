@@ -88,9 +88,9 @@ describe('Input', () => {
                 enumerable: true
             })
             //event 浏览器原生事件
-            console.log(event)
+            // console.log(event)
             let inputElement = vm.$el.querySelector('input')
-            console.log(inputElement.outerHTML)
+            // console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
             expect(callback).to.have.been.calledWith('hi')
@@ -113,9 +113,9 @@ describe('Input', () => {
                 enumerable: true
             })
             //event 浏览器原生事件
-            console.log(event)
+            // console.log(event)
             let inputElement = vm.$el.querySelector('input')
-            console.log(inputElement.outerHTML)
+            // console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
             expect(callback).to.have.been.calledWith('hi')
@@ -138,9 +138,9 @@ describe('Input', () => {
                 enumerable: true
             })
             //event 浏览器原生事件
-            console.log(event)
+            // console.log(event)
             let inputElement = vm.$el.querySelector('input')
-            console.log(inputElement.outerHTML)
+            // console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
             expect(callback).to.have.been.calledWith('hi')
@@ -163,9 +163,9 @@ describe('Input', () => {
                 enumerable: true
             })
             //event 浏览器原生事件
-            console.log(event)
+            // console.log(event)
             let inputElement = vm.$el.querySelector('input')
-            console.log(inputElement.outerHTML)
+            // console.log(inputElement.outerHTML)
             inputElement.dispatchEvent(event)
             //calledWith(event) change 事件的第一个参数
             expect(callback).to.have.been.calledWith('hi')

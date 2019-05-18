@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs-item" @click="ChangeTab" :class="{...classes,...disable}">
+    <div class="tabs-item" @click="ChangeTab" :class="{...classes,...disable}" :item-name="name">
         <slot></slot>
     </div>
 </template>
@@ -24,22 +24,31 @@
         },
         inject: ['EventBus'],
         created() {
-            this.EventBus.$on('update:selected', (name) => {
-                if (name === this.name) {
-                    // console.log(`我是item ${this.name},我${name}被选中了`)
-                    this.active = true
-                } else {
-                    // console.log(`我是item ${this.name},我${name}没被选中`)
-                    this.active = false
-                }
-            })
+            // console.log(this.EventBus)
+            if (this.EventBus) {
+                this.EventBus.$on('update:selected', (name) => {
+                    if (name === this.name) {
+                        // console.log(`我是item ${this.name},我${name}被选中了`)
+                        this.active = true
+                    } else {
+                        // console.log(`我是item ${this.name},我${name}没被选中`)
+                        this.active = false
+                    }
+                })
+            }
+
         },
         methods: {
             ChangeTab() {
-                if(this.disabled){
+                if (this.disabled) {
                     return
                 }
-                this.EventBus.$emit('update:selected', this.name, this)
+                if (this.EventBus) {
+                    this.EventBus.$emit('update:selected', this.name, this)
+                }
+                //为了使组件能测试
+                this.$emit('click',this)
+                // console.log('ChangeTab 执行了')
             }
         },
         computed: {
@@ -48,7 +57,7 @@
                     active: this.active
                 }
             },
-            disable(){
+            disable() {
                 return {
                     disabled: this.disabled
                 }
@@ -73,7 +82,8 @@
             color: $color;
             font-weight: bold;
         }
-        &.disabled{
+
+        &.disabled {
             color: #999999;
             cursor: not-allowed;
         }

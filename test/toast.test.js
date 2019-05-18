@@ -27,8 +27,8 @@ describe('Toast', () => {
 
             //$on 监听自定义事件
             vm.$on('close', function () {
-                console.log(111)
-                console.log(document.body.contains(vm.$el));
+                // console.log(111)
+                // console.log(document.body.contains(vm.$el));
                 expect(document.body.contains(vm.$el)).to.equal(false)
                 vm.$el.remove()
                 vm.$destroy()
@@ -60,7 +60,7 @@ describe('Toast', () => {
                 }
             }).$mount(div)
             setTimeout(() => {
-                console.log(document.body.contains(vm.$el));
+                // console.log(document.body.contains(vm.$el));
                 expect(document.body.contains(vm.$el)).to.equal(false)
                 div.remove()
                 vm.$destroy()
@@ -88,7 +88,7 @@ describe('Toast', () => {
             // vm.$on('click', callback())
             // console.log(document.body.contains(vm.$el));
             setTimeout(() => {
-                console.log(vm.$el.querySelector('.close'));
+                // console.log(vm.$el.querySelector('.close'));
                 vm.$el.querySelector('.close').click()
                 // expect(callback).to.have.been.called
                 // expect(callback).to.have.been.not.called

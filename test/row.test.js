@@ -34,7 +34,7 @@ describe('Row', () => {
             el: div
         })
         setTimeout(() => {
-            console.log(vm.$el.outerHTML)
+            // console.log(vm.$el.outerHTML)
             const cols = vm.$el.querySelectorAll('.col')
             expect(getComputedStyle(cols[0]).padding).to.equal('0px 10px')
             vm.$destroy()
@@ -43,7 +43,7 @@ describe('Row', () => {
             //测试代码 有 异步 添加 done()
 
         },0)
-        console.log(vm.$el.outerHTML)
+        // console.log(vm.$el.outerHTML)
         // expect(InputElement.value).to.equal('小明')
     })
 })

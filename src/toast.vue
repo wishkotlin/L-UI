@@ -60,7 +60,7 @@
             if (this.autoClose) {
                 setTimeout(() => {
                     this.close()
-                    console.log(this.autoCloseDelay);
+                    // console.log(this.autoCloseDelay);
                 }, this.autoCloseDelay * 1000)
             }
             this.$nextTick(() => {
@@ -71,7 +71,7 @@
         methods: {
             close() {
                 //元素 移除
-                console.log('close')
+                // console.log('close')
                 this.$el.remove()
                 this.$emit('close')
                 this.$emit('beforeClose')
@@ -85,7 +85,7 @@
                 }
             },
             log() {
-                console.log('callback调用')
+                // console.log('callback调用')
             }
         },
         computed: {

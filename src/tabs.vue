@@ -40,7 +40,14 @@
 
         },
         mounted() {
-            console.log(this.$children);
+            // console.log(this.$children);
+            //this.$children 子组件 不是子元素
+            if (this.$children.length === 0) {
+                // throw new Error('tabs 没有子组件')
+                console && console.warn && console.warn('tabs 没有子组件')
+
+            }
+            // console.log(this.$children);
             this.$children.forEach((vm) => {
                 // console.log(vm.$options.name);
                 if (vm.$options.name === 'tabs-head') {
@@ -48,7 +55,7 @@
                         // console.log(child.$options.name);
                         if (child.$options.name === 'tabs-item' && child.name === this.selected) {
                             // console.log(child.$el);
-                            this.EventBus.$emit('update:selected', this.selected,child)
+                            this.EventBus.$emit('update:selected', this.selected, child)
                         }
                     })
                 }

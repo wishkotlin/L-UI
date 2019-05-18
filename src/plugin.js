@@ -21,18 +21,17 @@ export default {
                 let Constructor = Vue.extend(Toast)
                 let toast = new Constructor({
                     //组件实例中传入 props
-                    propsData: {
-                        ...Toastoptions
-                    }
+                    propsData: Toastoptions,
+                    
                 })
                 toast.$slots.default = [msg]
                 toast.$mount()
                 //自定义事件 beforeClose
                 toast.$on('beforeClose', () => {
-                    console.log('CreateToast',currentToast);
+                    console.log('CreateToast', currentToast);
                     currentToast = null//设置上一个currentToast 为null
                 })
-                toast.$on('close',() => {
+                toast.$on('close', () => {
                     console.log(1111)
                 })
                 document.body.appendChild(toast.$el)

@@ -27,11 +27,11 @@
             },
             //进场位置
             enter: function (el, done) {
-                Velocity(el, {marginLeft: 0,},{duration: 350}, {complete: done})
+                Velocity(el, {marginLeft: 0,}, {duration: 350}, {complete: done})
 
             },
             //进场后位置
-            afterEnter(el,done){
+            afterEnter(el, done) {
                 Velocity(el, {opacity: 0}, {complete: done})
             },
             leave: function (el, done) {
@@ -54,20 +54,23 @@
             }
         },
         created: function () {
-            this.EventBus.$on('update:selected', (name, vm) => {
-                if (name !== this.name) {
-                    // console.log(`我是pane ${this.name},我${name}没被选中`)
-                    this.active = false
-                } else {
-                    // console.log(`我是pane ${this.name},我${name}被选中了`)
-                    this.active = true
-                    this.$nextTick(() => {
-                        // const {width, height, top, left} = this.$refs.pane.getBoundingClientRect()
-                        // console.log(width, height, top, left)
-                        // this.$refs.pane.style.opacity = 1;
-                    })
-                }
-            })
+            // console.log(this.EventBus)
+            if (this.EventBus) {
+                this.EventBus.$on('update:selected', (name, vm) => {
+                    if (name !== this.name) {
+                        // console.log(`我是pane ${this.name},我${name}没被选中`)
+                        this.active = false
+                    } else {
+                        // console.log(`我是pane ${this.name},我${name}被选中了`)
+                        this.active = true
+                        this.$nextTick(() => {
+                            // const {width, height, top, left} = this.$refs.pane.getBoundingClientRect()
+                            // console.log(width, height, top, left)
+                            // this.$refs.pane.style.opacity = 1;
+                        })
+                    }
+                })
+            }
         },
         computed: {
             classes() {
@@ -85,6 +88,7 @@
         flex-shrink: 0;
         flex-grow: 1;
         width: 100%;
+
         &.active {
             /*background: red;*/
         }
