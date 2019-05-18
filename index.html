@@ -41,6 +41,8 @@
     .box {
         /*margin: 20px;*/
         overflow-x: hidden;
+        padding-top: 100px;
+        padding-left: 100px;
     }
 
     /*.row{*/
@@ -81,24 +83,23 @@
 <body>
 <div id="app">
     <div class="box">
+        <g-popover>
+            <template slot="content">
+                <div>popover内容</div>
+            </template>
+            <template slot="trigger">
+                <button>点击</button>
+            </template>
+        </g-popover>
 
-<!--        <g-tabs selected="finance" direction="Horizontal">-->
-<!--            <g-tabs-head>-->
-                <g-tabs-item name="woman" >美女 </g-tabs-item>
-<!--                <g-tabs-item name="finance"> 财经 </g-tabs-item>-->
-<!--                <g-tabs-item name="sports"> 体育 </g-tabs-item>-->
-<!--            </g-tabs-head>-->
-<!--            <g-tabs-body>-->
-                <g-tabs-pane name="woman">美女相关</g-tabs-pane>
-<!--                <g-tabs-pane name="finance">财经相关</g-tabs-pane>-->
-<!--                <g-tabs-pane name="sports">体育相关</g-tabs-pane>-->
-<!--            </g-tabs-body>-->
-<!--        </g-tabs>-->
-
-
-<!--        <g-tabs>-->
-<!--            <div>hi</div>-->
-<!--        </g-tabs>-->
+        <g-popover>
+            <template slot="content">
+                <div>popover内容</div>
+            </template>
+            <template slot="trigger">
+                <button>点击</button>
+            </template>
+        </g-popover>
 
 
         <!--        {{selectedTab}}-->
