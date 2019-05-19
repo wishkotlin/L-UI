@@ -51,6 +51,9 @@ new Vue({
         selectedTab: 'sports'
     },
     methods: {
+        xxx(){
+            console.log('yyy')
+        },
         inputChange(event) {
             console.log(event.target.value)
         },
