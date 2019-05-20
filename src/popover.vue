@@ -50,6 +50,11 @@
                     contentWrapper.style.left = `${left + window.scrollX}px`
                     let { height: ConHeight} = contentWrapper.getBoundingClientRect()
                     contentWrapper.style.top = `${top + window.scrollY - Math.abs(ConHeight - height) / 2}px`
+                }else if(this.position === 'right'){
+                    let { height: ConLeft} = contentWrapper.getBoundingClientRect()
+                    contentWrapper.style.left = `${left + window.scrollX - Math.abs(ConLeft - left)}px`
+                    let { height: ConHeight} = contentWrapper.getBoundingClientRect()
+                    contentWrapper.style.top = `${top + window.scrollY - Math.abs(ConHeight - height) / 2}px`
                 }
 
 
@@ -187,6 +192,29 @@
                 border-bottom-color: transparent;
                 border-left-color: transparent;
                 box-shadow: 6px -1px 7px rgba(0, 0, 0, 0.07);
+                border-style: solid;
+                border-width: 4px;
+                position: absolute;
+            }
+        }
+
+        &.position-right{
+            transform: translateX(100%);
+            /*margin-left: 10px;*/
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            .popover-arrow {
+                width: 8px;
+                height: 8px;
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: -4px;
+                transform: translateY(-50%) rotate(45deg);
+                border-top-color: transparent;
+                border-right-color: transparent;
+                border-bottom-color: #fff;
+                border-left-color: #fff;
+                box-shadow: -3px -1px 7px rgba(0, 0, 0, 0.07);
                 border-style: solid;
                 border-width: 4px;
                 position: absolute;
