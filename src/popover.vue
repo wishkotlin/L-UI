@@ -1,9 +1,11 @@
 <template>
-    <div class="popover" @click="Onclick" ref="popover">
-        <div ref="contentWrapper" class="content-wrapper" v-if="visiable" :class="{[`position-${position}`]:true}">
-            <slot name="content"></slot>
-            <div class="popover-arrow"></div>
-        </div>
+    <div class="popover" ref="popover">
+        <transition name="fade">
+            <div ref="contentWrapper" class="content-wrapper" v-if="visiable" :class="{[`position-${position}`]:true}">
+                <slot name="content"></slot>
+                <div class="popover-arrow"></div>
+            </div>
+        </transition>
         <span class="triggerWrapper" ref="triggerWrapper">
              <slot name="trigger"></slot>
         </span>
@@ -15,7 +17,8 @@
         name: "popover",
         data() {
             return {
-                visiable: false
+                visiable: false,
+                hoverClose: null,
             };
         },
         props: {
@@ -25,44 +28,132 @@
                 validator(value) {
                     return ['top', 'bottom', 'left', 'right'].indexOf(value) >= 0
                 }
+            },
+            trigger: {
+                type: String,
+                default: 'click',
+                validator(value) {
+                    return ['click', 'hover'].indexOf(value) >= 0
+                }
             }
         },
+        computed: {
+            openEvent() {
+                if (this.trigger === 'click') {
+                    return 'click'
+                } else if (this.trigger === 'hover') {
+                    return 'mouseover'
+                }
+            },
+            closeEvent() {
+                if (this.trigger === 'click') {
+                    return 'click'
+                } else if (this.trigger === 'hover') {
+                    return 'mouseleave'
+                }
+            },
+        },
         mounted() {
-            // console.log(this.$refs.triggerWrapper);
+            switch (this.trigger) {
+                case "click":
+                    //手动添加事件监听 需要 在destoy 里面移除
+                    this.$refs.popover.addEventListener('click', this.Onclick)
+                    break;
+                case 'hover':
+                    this.$refs.popover.addEventListener('mouseenter', this.OnShow)
+                    this.$refs.popover.addEventListener('mouseleave', () => {
+                        this.hoverClose = setTimeout(() => {
+                            this.visiable = false
+                            // this.close
+                        }, 300)
+                        // this.$nextTick(() => {
+                        this.$refs.contentWrapper && this.$refs.contentWrapper.addEventListener('mouseenter', this.contentMouseenter)
+                        this.$refs.contentWrapper && this.$refs.contentWrapper.addEventListener('mouseleave', this.contentMouseleave)
+                        // })
+
+                    })
+                    break;
+            }
+        },
+        destroyed() {
+            switch (this.trigger) {
+                case "click":
+                    //手动添加事件监听 需要 在destoy 里面移除
+                    this.$refs.popover.removeEventListener('click', this.Onclick)
+                    break;
+                case 'hover':
+                    this.$refs.popover.removeEventListener('mouseenter', this.OnShow)
+                    clearTimeout(this.hoverClose)
+                    this.$refs.popover.removeEventListener('mouseleave', this.close)
+                    break;
+            }
         },
         methods: {
+            debounce(fn, wait) {
+                let timeout = null;
+                console.log(fn)
+                return () => {
+                    if (timeout !== null)
+                        clearTimeout(timeout);
+                    timeout = setTimeout(fn, wait);
+                }
+            },
+            contentMouseenter(e) {
+                // console.log(e.target)
+                //清除 timeout
+                clearTimeout(this.hoverClose)
+                this.$nextTick(() => {
+                    this.visiable = true
+                })
+            },
+            contentMouseleave(e) {
+                // console.log(e.target)
+                // console.log(this.$refs.contentWrapper.contains(e.target))
+                this.$refs.popover.addEventListener('mouseenter', (e) => {
+                    if (this.$refs.popover && (this.$refs.popover.contains(e.target) || this.$refs.popover.contains(e.target))) {
+                        clearTimeout(MouseleaveTime)
+                        this.visiable = true
+                    }
+                })
+                let MouseleaveTime = setTimeout(() => {
+                    this.visiable = false
+                }, 500)
+            },
             close() {
                 this.visiable = false
                 document.removeEventListener('click', this.handler)
             },
             PositionContentWrapper() {
-                const { contentWrapper,triggerWrapper } = this.$refs
+                const {contentWrapper, triggerWrapper} = this.$refs
                 document.body.appendChild(contentWrapper)
-                let {width, height, top, left} = triggerWrapper.getBoundingClientRect()
-                // console.log(width, height, top, left)
-                if (this.position === 'top') {
-                    contentWrapper.style.left = `${left + window.scrollX}px`
-                    contentWrapper.style.top = `${top + window.scrollY}px`
-                } else if (this.position === 'bottom') {
-                    contentWrapper.style.left = `${left + window.scrollX}px`
-                    contentWrapper.style.top = `${top + window.scrollY + height}px`
-                }else if(this.position === 'left'){
-                    contentWrapper.style.left = `${left + window.scrollX}px`
-                    let { height: ConHeight} = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.top = `${top + window.scrollY - Math.abs(ConHeight - height) / 2}px`
-                }else if(this.position === 'right'){
-                    let { height: ConLeft} = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.left = `${left + window.scrollX - Math.abs(ConLeft - left)}px`
-                    let { height: ConHeight} = contentWrapper.getBoundingClientRect()
-                    contentWrapper.style.top = `${top + window.scrollY - Math.abs(ConHeight - height) / 2}px`
+                const {height: ConHeight} = contentWrapper.getBoundingClientRect()
+                const {height: ConLeft} = contentWrapper.getBoundingClientRect()
+                // let {height: ConHeight} = contentWrapper.getBoundingClientRect()
+                const {width, height, top, left} = triggerWrapper.getBoundingClientRect()
+                //表编程
+                let Positions = {
+                    top: {
+                        top: `${top + window.scrollY}`,
+                        left: `${left + window.scrollX}`
+                    },
+                    bottom: {
+                        top: `${top + window.scrollY + height}`,
+                        left: `${left + window.scrollX}`
+                    },
+                    left: {
+                        top: `${top + window.scrollY - Math.abs(ConHeight - height) / 2}`,
+                        left: `${left + window.scrollX}`
+                    },
+                    right: {
+                        top: `${top + window.scrollY - Math.abs(ConHeight - height) / 2}`,
+                        left: `${left + window.scrollX - Math.abs(ConLeft - left)}`
+                    }
                 }
-
-
+                contentWrapper.style.left = Positions[this.position].left + 'px'
+                contentWrapper.style.top = Positions[this.position].top + 'px'
             },
             handler(e) {
-                console.log(e.target)
                 //如果点击区域不是 内容区域 把内容区域关掉
-                console.log(this.$refs.popover.contains(e.target));
                 // if (this.$refs.popover &&
                 //     (this.$refs.popover === e.target || this.$refs.popover.contains(e.target))
                 // ) { return }
@@ -73,7 +164,10 @@
                     //popover 以外的区域
                     //判断 contentWrapper 是否包含 监听 click 事件的点击区域
                     if (!(this.$refs.contentWrapper && (this.$refs.contentWrapper.contains(e.target) || this.$refs.contentWrapper.contains(e.target)))) {
-                        this.close()
+                        if (this.trigger === 'click') {
+                            this.close()
+                        }
+                        // this.close()
                     }
                 }
             },
@@ -82,6 +176,7 @@
             },
             OnShow() {
                 this.visiable = true
+                // this.visiable = true
                 this.$nextTick(() => {
                     this.PositionContentWrapper()
                 })
@@ -92,9 +187,7 @@
                 }, 0)
             },
             Onclick(event) {
-                console.log(this.$refs.triggerWrapper, event.target);
                 if (this.$refs.triggerWrapper.contains(event.target)) {
-                    // console.log("下面");
                     // this.visiable = !this.visiable
                     if (this.visiable === true) {
                         this.close()
@@ -118,6 +211,15 @@
         .triggerWrapper {
             display: inline-block;
         }
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+    {
+        opacity: 0;
     }
 
     .content-wrapper {
@@ -156,6 +258,7 @@
         &.position-bottom {
             margin-top: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
             .popover-arrow {
                 width: 8px;
                 height: 8px;
@@ -179,6 +282,7 @@
             transform: translateX(-100%);
             margin-left: -10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
             .popover-arrow {
                 width: 8px;
                 height: 8px;
@@ -198,10 +302,11 @@
             }
         }
 
-        &.position-right{
+        &.position-right {
             transform: translateX(100%);
             /*margin-left: 10px;*/
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
             .popover-arrow {
                 width: 8px;
                 height: 8px;

@@ -44,6 +44,12 @@
         padding-top: 100px;
         padding-left: 100px;
     }
+    .top{
+        margin-bottom: 10px;
+    }
+    .bottom{
+        margin-top: 10px;
+    }
 
     /*.row{*/
     /*    display: flex;*/
@@ -83,44 +89,87 @@
 <body>
 <div id="app">
     <div class="box" @click='xxx'>
-        <g-popover>
-            <template slot="content">
-                <div>popover内容</div>
-            </template>
-            <template slot="trigger">
-                <g-button>top</g-button>
-            </template>
-        </g-popover>
+        <div class="top">
+            <g-popover trigger="hover">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <template slot="trigger">
+                    <g-button>top</g-button>
+                </template>
+            </g-popover>
 
-        <g-popover position="bottom">
-            <template slot="content">
-                <div>popover内容</div>
-            </template>
-            <template slot="trigger">
-                <g-button>bottom</g-button>
-            </template>
-        </g-popover>
+            <g-popover position="bottom" trigger="hover">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <template slot="trigger">
+                    <g-button>bottom</g-button>
+                </template>
+            </g-popover>
 
-        <g-popover position="left">
-            <template slot="content">
-                <div>提到岁月，你们总说它是长河，流得头也不回。少不更事的年纪，我也用过老成口气，念过孔夫子的，逝者如斯乎，不舍昼夜。而今扭头过去看，才觉得如此可笑。如果没有你的话，那些都是真理，可是你来了，那些就是伪句。时光如滞，时光如滞啊。因为，那年遇到了你，我就被留在了那里。岁月知我，你不知。</div>
-            </template>
-            <template slot="trigger">
-                <g-button>left</g-button>
-            </template>
-        </g-popover>
+            <g-popover position="left" trigger="hover">
+                <template slot="content">
+                    <div>提到岁月，你们总说它是长河，流得头也不回。少不更事的年纪，我也用过老成口气，念过孔夫子的，逝者如斯乎，不舍昼夜。</div>
+                </template>
+                <template slot="trigger">
+                    <g-button>left</g-button>
+                </template>
+            </g-popover>
 
-        <g-popover position="right">
-            <template slot="content">
-                <div>我对她说:你改变了我很多。
-                    她说:不是我改变了你，是你自己本身就渴望改变，我只是恰好出现而已。
-                    我认为她说得对。</div>
-            </template>
-            <template slot="trigger">
-                <g-button>right</g-button>
-            </template>
-        </g-popover>
+            <g-popover position="right" trigger="hover">
+                <template slot="content">
+                    <div>我对她说:你改变了我很多。
+                        她说:不是我改变了你，是你自己本身就渴望改变，我只是恰好出现而已。
+                        我认为她说得对。
+                    </div>
+                </template>
+                <template slot="trigger">
+                    <g-button>right</g-button>
+                </template>
+            </g-popover>
+        </div>
 
+        <div class="bottom">
+            <g-popover>
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <template slot="trigger">
+                    <g-button>top</g-button>
+                </template>
+            </g-popover>
+
+            <g-popover position="bottom">
+                <template slot="content">
+                    <div>popover内容</div>
+                </template>
+                <template slot="trigger">
+                    <g-button>bottom</g-button>
+                </template>
+            </g-popover>
+
+            <g-popover position="left">
+                <template slot="content">
+                    <div>提到岁月，你们总说它是长河，流得头也不回。少不更事的年纪，我也用过老成口气，念过孔夫子的，逝者如斯乎，不舍昼夜。</div>
+                </template>
+                <template slot="trigger">
+                    <g-button>left</g-button>
+                </template>
+            </g-popover>
+
+            <g-popover position="right">
+                <template slot="content">
+                    <div>我对她说:你改变了我很多。
+                        她说:不是我改变了你，是你自己本身就渴望改变，我只是恰好出现而已。
+                        我认为她说得对。
+                    </div>
+                </template>
+                <template slot="trigger">
+                    <g-button>right</g-button>
+                </template>
+            </g-popover>
+        </div>
 
         <!--        {{selectedTab}}-->
         <!--        <g-tabs :selected="selectedTab" @update:selected="select($event)" direction="Horizontal">-->
