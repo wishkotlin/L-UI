@@ -1,8 +1,7 @@
 <template>
     <div class="collapse-item">
-        <div class="title" @click="showItem">{{title}}</div>
+        <div class="title" @click="toggleItem">{{title}}</div>
         <transition name="fade"
-
                     v-on:before-enter="beforeEnter"
                     v-on:enter="enter"
                     v-on:after-enter="afterEnter"
@@ -25,16 +24,78 @@
             title: {
                 type: String,
                 required: true
+            },
+            single: {
+                type: Boolean
+            },
+            name: {
+                type: [String, Number]
             }
         },
         data() {
             return {
-                open: false
+                open: false,
             }
         },
+        // inject: ['eventBus'],
+        mounted() {
+            this.$nextTick(() => {
+                // console.log(this.$options.propsData.single)
+                if (this.$options.propsData.single) {
+                    this.$parent.$on('update:child', (vm) => {
+                        if (vm !== this) {
+                            this.close()
+                        }
+                    })
+                }
+            })
+            console.log(this.name);
+            this.$parent.$on('update:selected', (selected) => {
+                if(this.name === selected){
+                    this.open = true
+                }
+                console.log(selected)
+            })
+
+
+            // console.log(this.$options.propsData.show)
+            // console.log(this.$parent);
+            // if (this.$parent !== this) {
+            //     this.$parent.$options.propsData.single = false
+            // } else {
+            //     this.$parent.$options.propsData.single = true
+            // }
+            // console.log(this);
+            // this.eventBus && this.eventBus.$on('update:selected', (vm) => {
+            //     if (vm !== this) {
+            //         this.close()
+            //     }
+            // })
+        },
+        computed: {},
+        // watch:{
+        //     show:(newval,oldval) => {
+        //         console.log(newval,oldval)
+        //         // return this.$options.propsData.show
+        //     }
+        // },
         methods: {
-            showItem() {
-                this.open = !this.open
+            toggleItem() {
+                if (this.open) {
+                    this.open = false
+                } else {
+                    this.open = true
+                    this.$nextTick(() => {
+                        if (this.$options.propsData.single) {
+                            this.$parent.$emit('update:child', this)
+                        }
+                    })
+                    // this.status(this)
+                    // this.eventBus && this.eventBus.$emit('update:selected', this)
+                }
+            },
+            close() {
+                this.open = false
             },
             // beforeEnter: function (el) {
             //     // el.style.opacity = 0
@@ -193,6 +254,7 @@
             display: flex;
             align-items: center;
             padding: 0 8px;
+            cursor: pointer;
         }
 
         > .collapse-content {

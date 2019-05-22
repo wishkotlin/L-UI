@@ -93,10 +93,10 @@
 <div id="app">
 
     <div class="box">
-        <g-collapse>
-            <g-collapse-item title="title1">红尘初妆，山河无疆。最初的面庞，碾碎梦魇无常，命格无双。</g-collapse-item>
-            <g-collapse-item title="title2">内容2</g-collapse-item>
-            <g-collapse-item title="title3">内容3</g-collapse-item>
+        <g-collapse :single="true" selected="2">
+            <g-collapse-item title="title1" name="1">红尘初妆，山河无疆。最初的面庞，碾碎梦魇无常，命格无双。</g-collapse-item>
+            <g-collapse-item title="title2" name="2">内容2</g-collapse-item>
+            <g-collapse-item title="title3" name="3">内容3</g-collapse-item>
         </g-collapse>
     </div>
 
