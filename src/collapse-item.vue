@@ -25,9 +25,9 @@
                 type: String,
                 required: true
             },
-            single: {
-                type: Boolean
-            },
+            // single: {
+            //     type: Boolean
+            // },
             name: {
                 type: [String, Number]
             }
@@ -35,14 +35,21 @@
         data() {
             return {
                 open: false,
+                single: this.$props.single
             }
         },
         // inject: ['eventBus'],
         mounted() {
             this.$nextTick(() => {
                 // console.log(this.$options.propsData.single)
-                if (this.$options.propsData.single) {
-                    this.$parent.$on('update:child', (vm) => {
+                //是否只能选中一个
+                console.log('singleprop', this.singleprop);
+                console.log(this.single)
+                if (this.single) {
+                    //将父组件作为 eventbus
+                    this.$parent.$on('child', (vm) => {
+                        // console.log(vm)
+                        //如果不是点击的组件 就关闭
                         if (vm !== this) {
                             this.close()
                         }
@@ -50,46 +57,47 @@
                 }
             })
             console.log(this.name);
-            this.$parent.$on('update:selected', (selected) => {
-                if(this.name === selected){
+            //默认那个展开
+            this.$parent.$on('defaultActiveKey', (selected) => {
+                if (this.name === selected) {
                     this.open = true
+                } else {
+                    this.open = false
                 }
                 console.log(selected)
             })
-
-
-            // console.log(this.$options.propsData.show)
-            // console.log(this.$parent);
-            // if (this.$parent !== this) {
-            //     this.$parent.$options.propsData.single = false
-            // } else {
-            //     this.$parent.$options.propsData.single = true
-            // }
-            // console.log(this);
-            // this.eventBus && this.eventBus.$on('update:selected', (vm) => {
-            //     if (vm !== this) {
-            //         this.close()
-            //     }
-            // })
         },
-        computed: {},
-        // watch:{
-        //     show:(newval,oldval) => {
-        //         console.log(newval,oldval)
-        //         // return this.$options.propsData.show
-        //     }
-        // },
+        computed: {
+            singleprop: {
+                get: function () {
+                    return this.single
+                },
+                // setter
+                set: function (newValue) {
+                    console.log(newValue)
+                    // this.propSingle = newValue
+                    // var names = newValue.split(' ')
+                    // this.firstName = names[0]
+                    // this.lastName = names[names.length - 1]
+                }
+            }
+        },
         methods: {
             toggleItem() {
+                this.$parent.$emit('update:activeKey', this.name)
+                // this.$parent.$emit('update:pick', this.name)
                 if (this.open) {
                     this.open = false
                 } else {
                     this.open = true
                     this.$nextTick(() => {
-                        if (this.$options.propsData.single) {
-                            this.$parent.$emit('update:child', this)
+                        //将父组件作为 eventbus
+                        //是否只能选中一个
+                        if (this.single) {
+                            this.$parent.$emit('child', this)
                         }
                     })
+                    // this.$parent.$emit('update:selected', this.name)
                     // this.status(this)
                     // this.eventBus && this.eventBus.$emit('update:selected', this)
                 }
@@ -97,35 +105,6 @@
             close() {
                 this.open = false
             },
-            // beforeEnter: function (el) {
-            //     // el.style.opacity = 0
-            //     el.style.height = 0
-            //     el.style.transform = 'translateY(0)';
-            // },
-            // enter: function (el, done) {
-            //     // var delay = el.dataset.index * 150
-            //     // setTimeout(function () {
-            //     console.log(el.getBoundingClientRect(), el.clientHeight)
-            //     Velocity(
-            //         el,
-            //         {height: `100%`, transform: 'translateY(100%)'},
-            //         {duration: 300},
-            //         {complete: done}
-            //     )
-            //     // }, 100)
-            // },
-            // leave: function (el, done) {
-            //     // var delay = el.dataset.index * 150
-            //     // setTimeout(function () {
-            //     Velocity(
-            //         el,
-            //         {height: 0, transform: 'translateY(0)'},
-            //         // { duration: 300 },
-            //         {complete: done}
-            //     )
-            //     // }, 100)
-            // }
-
             beforeEnter(el) {
                 this.addClass(el, 'collapse-transition');
                 if (!el.dataset) el.dataset = {};

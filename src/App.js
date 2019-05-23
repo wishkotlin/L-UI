@@ -52,7 +52,9 @@ new Vue({
         loading3: true,
         msg: '双向数据绑定',
         toast: '等点击Toast',
-        selectedTab: 'sports'
+        selectedTab: 'sports',
+        collapseTab: '2',
+        activeKey: 1
     },
     methods: {
         xxx() {

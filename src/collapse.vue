@@ -15,8 +15,11 @@
                 default: false,
                 required: true
             },
-            selected:{
+            defaultActiveKey: {
                 type: String
+            },
+            activeKey: {
+                type: [String, Array, Number]
             }
         },
         methods: {
@@ -35,23 +38,20 @@
                 // show: false
             }
         },
-        created(){
+        created() {
 
         },
         mounted() {
-            // this.$children.forEach((item) => {
-            //     console.log(item)
-            //     item.$options.propsData.show = true
-            //     item.$on('status',this.status)
-            //     // console.log(item)
-            // })
-            // console.log(this.$children);
             this.$children.forEach((item) => {
-                // console.log(item.props);
-                item.$options.propsData.single = this.single
-                // console.log(item.$options.propsData)
+                item.single = this.single
             })
-            this.$emit('update:selected',this.selected)
+
+            this.$emit('defaultActiveKey', this.defaultActiveKey)
+            this.$on('update:activeKey', (name) => {
+                console.log(this.$parent);
+                this.$parent.activeKey = name
+                console.log(name)
+            })
         },
         provide() {
             if (this.single) {
