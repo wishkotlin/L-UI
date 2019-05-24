@@ -21,7 +21,7 @@
         return valid
     }
     export default {
-        name: "g-col",
+        name: "l-col",
         data() {
             return {
                 gutter: this.$props.gutter

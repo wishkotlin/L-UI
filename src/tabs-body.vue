@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "tabs-body",
+        name: "l-tabs-body",
         inject: ['EventBus'],
         created() {
             // this.EventBus.$on('update:selected', (name) => {

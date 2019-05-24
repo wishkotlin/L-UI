@@ -2,7 +2,7 @@ import Vue from "vue";
 import Button from "./button.vue";
 import Icon from "./icon.vue";
 import ButtonGroup from "./buttongroup.vue";
-import Input from "./Input.vue";
+import Input from "./input.vue";
 import Row from "./row.vue"
 import Col from './col.vue'
 import Layout from './layout'

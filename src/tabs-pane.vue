@@ -18,7 +18,7 @@
 
     window.Velocity = window.velocity = Velocity;
     export default {
-        name: "tabs-pen",
+        name: "l-tabs-pen",
         inject: ['EventBus'],
         methods: {
             //进场前位置

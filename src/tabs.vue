@@ -8,7 +8,7 @@
     import Vue from 'vue'
 
     export default {
-        name: "tabs",
+        name: "l-tabs",
         props: {
             selected: {
                 type: String,

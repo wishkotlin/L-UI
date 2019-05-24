@@ -63,3 +63,6 @@ typings/
 .idea/
 .cache/
 dist/
+docs/
+.temp1/
+.temp2/

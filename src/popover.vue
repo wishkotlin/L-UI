@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        name: "popover",
+        name: "l-popover",
         data() {
             return {
                 visiable: false,

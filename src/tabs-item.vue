@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "tabs-item",
+        name: "l-tabs-item",
         data() {
             return {
                 active: false

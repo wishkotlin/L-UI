@@ -10,7 +10,7 @@
 
 <script>
     export default {
-        name: "tabs-head",
+        name: "l-tabs-head",
         inject: ['EventBus'],
         data() {
             return {

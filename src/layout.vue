@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: "g-layout",
+        name: "l-layout",
         data(){
             return {
                 layoutClass: {

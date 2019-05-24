@@ -5,6 +5,7 @@
 </template>
 <script>
 export default {
+  name:'l-buttongroup',
   mounted() {
     //   console.log(this.$children)
     // console.log(this.$el.children)

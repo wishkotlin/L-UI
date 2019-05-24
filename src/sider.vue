@@ -16,7 +16,7 @@
     import Velocity from 'velocity-animate'
 
     export default {
-        name: "g-sider",
+        name: "l-sider",
         data() {
             return {
                 visiable: true

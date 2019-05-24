@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        name: "g-footer"
+        name: "l-footer"
     }
 </script>
 

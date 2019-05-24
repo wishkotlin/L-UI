@@ -46,7 +46,7 @@
         /**
          * name 是用来调试的 在 vue devtools 中使用
          */
-        name: "G-Input",
+        name: "l-input",
     }
 </script>
 
@@ -56,7 +56,7 @@
     $boder-color-hover: #666;
     $border-radius: 4px;
     $font-size: 12px;
-    $box-shadow-color: rgb(0, 0, 0, 0.5);
+    $box-shadow-color: rgba(0, 0, 0, 0.5);
     $red: #f1453d;
     .wrapper {font-size: $font-size;display: inline-block;
         display: inline-flex;

@@ -18,7 +18,7 @@
 <script>
     //构造组件的选项
     export default {
-        name: "g-toast",
+        name: "l-g-toast",
         props: {
             autoClose: {
                 type: Boolean,

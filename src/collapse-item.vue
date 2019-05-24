@@ -19,7 +19,7 @@
 
 <script>
     export default {
-        name: "collapse-item",
+        name: "l-collapse-item",
         props: {
             title: {
                 type: String,

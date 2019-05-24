@@ -8,7 +8,7 @@
     import Vue from 'vue'
 
     export default {
-        name: "collapse",
+        name: "l-collapse",
         props: {
             single: {
                 type: Boolean,
