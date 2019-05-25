@@ -120,7 +120,7 @@
 
 <style lang="scss" scoped>
     .col {
-        height: 100px;
+        // height: 100px;
         /*background: aqua;*/
         width: 50%;
         /*outline: 1px red solid;*/
@@ -142,9 +142,9 @@
         }
 
         .gutter-box {
-            outline: 1px solid red;
-            background: rgb(76, 188, 240);
-            height: 100px;
+            // outline: 1px solid red;
+            // background: rgb(76, 188, 240);
+            // height: 100px;
         }
 
 
